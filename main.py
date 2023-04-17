@@ -7,14 +7,17 @@ class SelectMenu(discord.ui.Select):
     options = [discord.SelectOption(label = "feedback"), discord.SelectOption(label = "bug-report")]
     super().__init__(placeholder = "Tell Gator what form to provide", options = options)
 
+  async def callback(self, interaction:discord.Interaction):
+    await interaction.response.send_message(content = f"Providing you with **{', '.join(self.values)} form**")
+
 class Select(discord.ui.View):
   def __init__(self):
     super().__init__()
     self.add_item(SelectMenu())
 
-client = commands.Bot(command_prefix = "!", intents = discord.Intents.all())
+client = commands.Bot(command_prefix = "/", intents = discord.Intents.all())
 
-CHANNEL_ID = # channel token here
+CHANNEL_ID = #blahblahblacksheep
 channel = client.get_channel(CHANNEL_ID)
 
 @client.event
